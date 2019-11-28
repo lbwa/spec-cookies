@@ -8,17 +8,39 @@ This project describes how http cookies works.
 
 ## Prerequisites
 
-MUST run the following command to create local sll certification which is used to https server.
+1. Should run the following command to create local ssl certification which is used to https server.
 
-```bash
-npm run setup
-```
+   ```bash
+   npm run setup
+   ```
 
-- start https server
+2. Modify your `/etc/host` file
 
-```bash
-npm run start-https
-```
+   ```txt
+   127.0.0.1 domain.com
+   127.0.0.1 main.domain.com
+   127.0.0.1 sub.domain.com
+   ```
+
+## Installation
+
+- Start https server
+
+  ```bash
+  npm run start-https
+  ```
+
+- Browser web page
+
+  ```bash
+  https://domain.com:5000
+
+  # or
+  https://main.domain.com:5000
+
+  # or
+  https://sub.domain.com:5000
+  ```
 
 ## License
 
