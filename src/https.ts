@@ -19,7 +19,16 @@ const handler = (req: http.IncomingMessage, res: http.ServerResponse) => {
     )
     rs.pipe(res)
     rs.on('end', () => res.end())
+    return
+  }
 
+  if (req.url === '/frontend.js') {
+    res.writeHead(200, {
+      'Content-type': 'application/javascript'
+    })
+    const rs = fs.createReadStream(path.resolve(__dirname, './frontend.js'))
+    rs.pipe(res)
+    rs.on('end', () => res.end())
     return
   }
 
