@@ -4,4 +4,4 @@ node_modules
 dist
 
 #cert
-/src/cert
+/src/cert/*.pem
