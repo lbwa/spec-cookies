@@ -9,9 +9,10 @@
   "private": true,
   "scripts": {
     "setup": "sh ./setup.sh",
+    "clear": "rm -rf dist/*",
     "watch-ts": "tsc -w",
     "watch-https": "nodemon --inspect dist/https",
-    "start-https": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold\" \"npm run watch-ts\" \"npm run watch-https\""
+    "start-https": "npm run clear && concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold\" \"npm run watch-ts\" \"npm run watch-https\""
   },
   "dependencies": {
     "concurrently": "^5.0.0",

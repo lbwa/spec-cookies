@@ -9,6 +9,7 @@ const handler = (req: http.IncomingMessage, res: http.ServerResponse) => {
     'Content-Type': 'application/json;charset=UTF-8',
     'Access-Control-Allow-Origin': '*'
   })
+
   if (req.url === '/') {
     res.writeHead(200, {
       'Content-Type': 'text/html'
@@ -18,6 +19,14 @@ const handler = (req: http.IncomingMessage, res: http.ServerResponse) => {
     )
     rs.pipe(res)
     rs.on('end', () => res.end())
+
+    return
+  }
+
+  if (req.url === '/favicon.ico') {
+  }
+
+  if (req.url === '/set-cookies') {
   }
 }
 
