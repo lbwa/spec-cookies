@@ -19,6 +19,7 @@ const crossSiteButton = document.createElement('button')
 const sameSiteButton = document.createElement('button')
 function http(url: string, method = 'get') {
   const xml = new XMLHttpRequest()
+  xml.withCredentials = true
   xml.open(method, url, true)
   xml.send()
 }

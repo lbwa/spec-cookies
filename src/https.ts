@@ -48,7 +48,13 @@ const handler = (req: http.IncomingMessage, res: http.ServerResponse) => {
             2
           )}; HttpOnly; Secure; SameSite=None; Max-Age=${EXPIRED_COOKIE}; Path=/; Domain=domain.com`
       ],
-      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': (req.headers.referer || '*').replace(
+        /\.com(:\d+)?(\/.*)?/,
+        (match, port) => {
+          return '.com' + (port || '')
+        }
+      ),
+      'Access-Control-Allow-Credentials': 'true'
     })
     return res.end(
       JSON.stringify({
