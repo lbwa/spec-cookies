@@ -4,12 +4,9 @@ import fs from 'fs'
 import path from 'path'
 
 const PORT = process.env.PORT || 5000
+const EXPIRED_COOKIE = 60 // seconds
+const EXPIRED_STATIC = 10 * 60 // seconds
 const handler = (req: http.IncomingMessage, res: http.ServerResponse) => {
-  res.writeHead(200, {
-    'Content-Type': 'application/json;charset=UTF-8',
-    'Access-Control-Allow-Origin': '*'
-  })
-
   if (req.url === '/') {
     res.writeHead(200, {
       'Content-Type': 'text/html'
@@ -26,16 +23,39 @@ const handler = (req: http.IncomingMessage, res: http.ServerResponse) => {
     res.writeHead(200, {
       'Content-type': 'application/javascript'
     })
-    const rs = fs.createReadStream(path.resolve(__dirname, './frontend.js'))
-    rs.pipe(res)
-    rs.on('end', () => res.end())
-    return
+    return fs
+      .createReadStream(path.resolve(__dirname, './frontend.js'))
+      .pipe(res)
+      .on('end', () => res.end())
   }
 
   if (req.url === '/favicon.ico') {
+    res.writeHead(200, {
+      'Content-Type': 'image/ico',
+      'Cache-Control': `max-age=${EXPIRED_STATIC}`
+    })
+    return res.end(
+      fs.readFileSync(path.resolve(process.cwd(), './src/public/favicon.ico'))
+    )
   }
 
-  if (req.url === '/set-cookies') {
+  if (req.url === '/set-cookie') {
+    res.writeHead(200, {
+      'Set-Cookie': [
+        `auth=${Math.random()
+          .toString(16)
+          .slice(
+            2
+          )}; HttpOnly; Secure; SameSite=None; Max-Age=${EXPIRED_COOKIE}; Path=/; Domain=domain.com`
+      ],
+      'Access-Control-Allow-Origin': '*'
+    })
+    return res.end(
+      JSON.stringify({
+        code: 200,
+        data: 'done'
+      })
+    )
   }
 }
 
