@@ -40,6 +40,9 @@ const handler = (req: http.IncomingMessage, res: http.ServerResponse) => {
   }
 
   if (req.url === '/set-cookie') {
+    // https://www.chromestatus.com/feature/5088147346030592
+    // SameSite default value is lax
+    // https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#SameSite_cookies
     res.writeHead(200, {
       'Set-Cookie': [
         `auth=${Math.random()
