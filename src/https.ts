@@ -63,6 +63,9 @@ const handler = (req: http.IncomingMessage, res: http.ServerResponse) => {
       })
     )
   }
+
+  res.statusCode = 404
+  res.end()
 }
 
 https
