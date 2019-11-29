@@ -6,6 +6,10 @@ This project describes how http cookies works.
 
 [HTTP State Management Mechanism](https://tools.ietf.org/html/rfc6265)
 
+- third-party cookies(cross-site cookies)
+
+  Note that the [HSMM](https://tools.ietf.org/html/rfc6265#section-7.1) specification grants user agents wide latitude to experiment with third-party cookie policies that balance the privacy and compatibility needs of their users. However, **it does not endorse any particular third-party cookie policy**.
+
 ## Prerequisites
 
 1. Should run the following command to create local ssl certification which is used to https server.
@@ -30,7 +34,7 @@ This project describes how http cookies works.
   npm run start-https
   ```
 
-- Browser web page
+- Browse web page
 
   ```bash
   https://domain.com:5000
