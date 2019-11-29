@@ -16,7 +16,7 @@ Note that the [HSMM](https://tools.ietf.org/html/rfc6265#section-7.1) specificat
 
 - [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials)
 
-- [CORS](ttps://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Requests_with_credentials)
+- [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Requests_with_credentials)
 
 By default, in cross-site XMLHttpRequest or Fetch invocations, browsers will not send credentials. A specific flag has to be set on the XMLHttpRequest object or the Request constructor when it is invoked.
 
