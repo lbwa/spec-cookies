@@ -1,5 +1,5 @@
 const $ = document.querySelector.bind(document)
-const ref = $('.ref')
+const ref = $('main')!
 const ORIGIN_TAG_TO_URL = {
   main: 'main.domain.com',
   sub: 'sub.domain.com'
@@ -38,5 +38,5 @@ if (new RegExp(ORIGIN_TAG_TO_URL.main).test(location.origin)) {
 sameSiteButton.innerText = `${location.origin}/set-cookie`
 sameSiteButton.onclick = () => http(`${location.origin}/set-cookie`)
 
-document.body.insertBefore(crossSiteButton, ref)
-document.body.insertBefore(sameSiteButton, ref)
+ref.appendChild(crossSiteButton)
+ref.appendChild(sameSiteButton)

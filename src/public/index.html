@@ -11,20 +11,31 @@
         margin: 0;
         padding: 0;
         height: 100%;
+        text-align: center;
       }
-      body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
+      main {
+        height: calc(100% - 36px);
+        overflow: hidden;
       }
       button {
         margin: 10px;
       }
+      footer {
+        padding: 10px 0;
+        font-size: 12px;
+      }
     </style>
   </head>
   <body>
-    <h1 class="title">Spec Cookie</h1>
-    <script class="ref" src="frontend.js"></script>
+    <main>
+      <h1 class="title">Spec Cookie</h1>
+    </main>
+    <footer>
+      Copyright &copy; 2019
+      <a href="http://github.com/lbwa" target="_blank" rel="noopener noreferrer"
+        >Bowen Liu</a
+      >
+    </footer>
+    <script src="frontend.js"></script>
   </body>
 </html>
