@@ -14,25 +14,29 @@ Note that the [HSMM](https://tools.ietf.org/html/rfc6265#section-7.1) specificat
 
 #### MDN
 
-- [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials)
+- [XMLHttpRequest.withCredentials](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials)
 
 - [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Requests_with_credentials)
 
-By default, in cross-site XMLHttpRequest or Fetch invocations, browsers will not send credentials. A specific flag has to be set on the XMLHttpRequest object or the Request constructor when it is invoked.
+By default, in cross-site XMLHttpRequest or Fetch invocations, browsers will not send credentials (HTTP cookies and HTTP Authentication information). A specific flag has to be set on the XMLHttpRequest object or the Request constructor when it is invoked.
 
 ```ts
 // with XMLHttpRequest(omit unrelated code)
 const http = new XMLHttpRequest()
 http.open('GET', 'https://api.github.com', true)
-http.withCredentials = true // set a flag used to send cross-site credentials.
+// set a flag used to send cross-site credentials.
+// Otherwise, cross-site credentials wouldn't be sent.
+// https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/withCredentials
+http.withCredentials = true
 
 // with browser fetch API(omit unrelated code)
+// https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch
 fetch(url, {
   credentials: 'include'
 })
 ```
 
-Note that the response headers should include `Access-Control-Allow-Credentials` with `true` value and `Access-Control-Allow-Origin` with a **specific** origin domain, instead of the `*` wildcard.
+Note that the response headers should include [Access-Control-Allow-Credentials](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials) with `true` value and [Access-Control-Allow-Origin](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin) with a **specific** origin domain, instead of the `*` wildcard.
 
 ## Prerequisites
 
